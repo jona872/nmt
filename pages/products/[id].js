@@ -9,7 +9,7 @@ function ProductView({ product }) {
     console.log("Clicked: " + id);
     const res = await axios.delete('/api/products/' + [id]);
 
-    console.log(res);
+    // console.log(res);
     router.push("/");
   }
 
@@ -20,10 +20,17 @@ function ProductView({ product }) {
       <h1>{product.name}</h1>
       <h2>{product.price}</h2>
       <h3>{product.description}</h3>
-      <button className="bg-red-700 px-3 py-2 text-white hover:bg-red-400"
+      
+      <button className="bg-red-700 px-3 py-2 text-white hover:bg-red-400 m-2"
         onClick={() => { handleDelete(product.id) }}>
         Delete
       </button>
+
+      <button className="bg-gray-700 px-3 py-2 text-white hover:bg-gray-400 m-2"
+        onClick={() =>  router.push("/products/edit/" + product.id) }>
+        Edit
+      </button>
+
     </Layout>
   )
 }
