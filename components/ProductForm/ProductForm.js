@@ -1,8 +1,10 @@
 import axios from 'axios';
 import React, { useEffect } from 'react';
 import { useRouter } from "next/router";
+import { toast } from 'react-toastify';
 
 export function ProductForm() {
+  const notify = () => toast("Wow so easy!");
   const [product, setProduct] = React.useState({
     name: "",
     price: 0,
@@ -31,32 +33,34 @@ export function ProductForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    if (router.query.id) {
-      //update (PUT)
-      console.log("Entro en ProductForm PUT");
-      const response = await axios.put('/api/products/' + router.query.id, product);
-      console.log(response);
-
-    } else {
-      //create (POST)
-      console.log("Entro en ProductForm POST");
-      const response = await axios.post('/api/products', product);
+    try {
+      if (router.query.id) {
+        //update (PUT)
+        await axios.put('/api/products/' + router.query.id, product);
+        toast.success("Product updated succesfully!")
+      } else {
+        //create (POST)
+        await axios.post('/api/products', product);
+        toast.success("Product created succesfully!")
+      }
+      router.push('/');
+    } catch (error) {
+      toast.error(error.response.data.message);
     }
 
-    router.push('/');
   };
   // https://www.youtube.com/watch?v=7vBSeFjJCww
 
   return (
     <div className="w-full max-w-xs">
+
       <form onSubmit={handleSubmit} className="bg-white shadow-md rounded px-8 py-6 pb-8 mb-4">
         <label htmlFor="name">Name: </label>
         <input type="text" name="name" value={product.name || ''}
           onChange={handleChange} className="shadow border rounded py-3 px-3 text-gray-700" />
 
         <label htmlFor="price">Price: </label>
-        <input type="number" name="price" value={product.price || ''}
+        <input type="text" name="price" value={product.price || ''}
           onChange={handleChange} className="shadow border rounded py-3 px-3 text-gray-700" />
 
         <label htmlFor="description">Description: </label>

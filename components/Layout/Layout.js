@@ -1,4 +1,6 @@
 import Link from 'next/link';
+import { ToastContainer } from 'react-toastify';
+
 
 export default function Layout({ children }) {
     return (
@@ -13,11 +15,11 @@ export default function Layout({ children }) {
                 </Link>
 
             </div>
+
             <div className="bg-gray-100 h-screen p-10">
-                <div className="container mx-auto h-full">
-                    {children}
-                </div>
+                <div className="container mx-auto h-full"> {children} </div>
             </div>
+            
         </>
     )
 }

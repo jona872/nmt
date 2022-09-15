@@ -1,4 +1,6 @@
 import { pool } from "../../../config/db";
+// dinamic handler, for showing particual object, 
+// Edit view, delete view (Not exisiting)
 
 export default async function handler(req, res) {
   //req.method = GET, req.body ( data ), req.query
@@ -29,6 +31,7 @@ const getProduct = async (req, res) => {
 const deleteProduct = async (req, res) => {
   try {
     const { id } = req.query;
+    // throw new Error("Te mandaste cualquiera");
     const result = await pool.query("delete from product where id = ?", [id]);
     return res.status(200).json("Se elimino correctamente el prod id: " + id);
   } catch (error) {

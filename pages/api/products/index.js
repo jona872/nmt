@@ -1,4 +1,6 @@
 import { pool } from '../../../config/db';
+//Main prod handler, used for the prod. landing page,
+//Loads all prod, and handle the creation post (same index url)
 
 export default async function handler(req, res) {
    switch (req.method) {
@@ -8,7 +10,6 @@ export default async function handler(req, res) {
          return await saveProduct(req, res);
    }
 }
-
 
 const getProducts = async (req, res) => {
    try {
@@ -28,8 +29,7 @@ const saveProduct = async (req, res) => {
          description,
          price,
       });
-      return res.status(200).
-         json({ name, description,price, id: result.insertId });
+      return res.status(200).json({ name, description, price, id: result.insertId });
    } catch (error) {
       return res.status(500).json({ message: error.message });
    }
