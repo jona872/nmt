@@ -54,24 +54,37 @@ export function ProductForm() {
   return (
     <div className="w-full max-w-xs">
 
-      <form onSubmit={handleSubmit} className="bg-white shadow-md rounded px-8 py-6 pb-8 mb-4">
-        <label htmlFor="name">Name: </label>
-        <input type="text" name="name" value={product.name || ''}
-          onChange={handleChange} className="shadow border rounded py-3 px-3 text-gray-700" />
+      <form onSubmit={handleSubmit} className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-6">
 
-        <label htmlFor="price">Price: </label>
-        <input type="text" name="price" value={product.price || ''}
-          onChange={handleChange} className="shadow border rounded py-3 px-3 text-gray-700" />
+        <div className="mb-6">
+          <label htmlFor="name" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Name: </label>
 
-        <label htmlFor="description">Description: </label>
-        <textarea name="description" id="description" rows="2" value={product.description || ''}
-          onChange={handleChange} className="shadow border rounded py-3 px-3 text-gray-700"></textarea>
+          <input type="text" name="name" value={product.name || ''}
+            onChange={handleChange} id="name" className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="Product name here..." required />
+        </div>
 
-        <button className="bg-blue-500 hover:bg-blue-700 py-2 px-4 rounded foucus:outline-none focus:shadow-outline font-bold text-white ">
+
+        <div className="mb-6">
+          <label htmlFor="price" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Price: </label>
+
+          <input type="text" name="price" value={product.price || ''}
+            onChange={handleChange} id="price" className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="Product price here..." required />
+        </div>
+
+        <div className="mb-6">
+          <label htmlFor="description" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Description:</label>
+
+          <textarea name="description" id="description" value={product.description || ''}
+            onChange={handleChange} rows="4" className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Product description..."></textarea>
+        </div>
+
+        <button type="submit" class="group relative flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
           {
             router.query.id ? "Update Product" : "Save Product"
           }
         </button>
+
+
       </form>
     </div>
   );
