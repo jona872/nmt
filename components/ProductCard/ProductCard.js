@@ -4,8 +4,6 @@ import Link from "next/link";
 // make fetch to this endpoint -->https://picsum.photos/200/300 
 
 export default function ProductCard({ product }) {
-    console.log("Product card COMPONENT");
-    console.log(product.url);
     return (
         <div>
             <Link key={product.id} href={`/products/${product.id}`} >

@@ -4,7 +4,6 @@ import { useRouter } from "next/router";
 import { toast } from 'react-toastify';
 
 export function ProductForm() {
-  const notify = () => toast("Wow so easy!");
   const [product, setProduct] = React.useState({
     name: "",
     price: 0,
@@ -22,7 +21,6 @@ export function ProductForm() {
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-    console.log(name, value);
     setProduct((prevState) => {
       return {
         ...prevState,
